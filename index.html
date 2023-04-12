@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Color game</title>
+    <style>
+      /* CSS styling for the page */
+      body {
+        background-color: #ffffff;
+      }
+      button {
+        font-size: 16px;
+		
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: #4CAF50;
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+      }
+      header {
+        background-color: #b4ff39;
+        color: #170f1e;
+        padding: 10px;
+		text-align: center;
+      }
+      aside {
+        float: left;
+        width: 20%;
+        background-color: #ffffff;
+        padding: 10px;
+      }
+      main {
+        float: left;
+        width: 60%;
+        padding: 10px;
+		text-align: center;
+      }
+		input[type="text"] {
+		width: 400px;
+		padding: 12px 20px;
+		margin: 8px 0;
+		box-sizing: border-box;
+		border: 2px solid #ccc;
+		border-radius: 4px;
+		background-color: #f8f8f8;
+		font-size: 16px;
+		color: #555;
+		}
+		.container {
+		width: 80%;
+		margin: 0 auto;
+		background-color: #f0f0f0;
+		padding: 20px;
+		border-radius: 5px;
+		box-shadow: 0 0 5px rgba(0,0,0,0.2);
+		}
+	  .color-box {
+        width: 100px;
+        height: 100px;
+        margin: 20px auto;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Play the GAME!!!!</h1>
+      
+    </header>
+	<aside></aside>
+    <main>
+	<div class="container">
+      <h2>Welcome to Color Quest.</h2>
+	  <p>Identify The Color in Input Box and Win The GAME</p>
+	  
+	  
+	  
+	  <button onclick="result1()"><div  id="color-box1" class="color-box"></div></button>
+	  <button onclick="result2()"><div  id="color-box2" class="color-box"></div></button>
+	  <button onclick="result3()"><div  id="color-box3" class="color-box"></div></button>
+	  <button onclick="result4()"><div  id="color-box4" class="color-box"></div></button>
+	  <p id="resultbox"></p>
+	  </div>
+	  <h3>To Start Game Press on :<a href="Color.html" ><button>play</button></a></h3>
+
+		</main>
+    
+  </body>
+</html>
+	 

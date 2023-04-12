@@ -1,0 +1,287 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Color game</title>
+    <style>
+      /* CSS styling for the page */
+      body {
+        background-color: #ffffff;
+      }
+      button {
+        font-size: 16px;
+		
+        padding: 10px 20px;
+        border-radius: 5px;
+        background-color: #4CAF50;
+        color: #ffffff;
+        border: none;
+        cursor: pointer;
+      }
+	  button:hover {
+  background-color: #6a6a6a;;
+}
+      header {
+        background-color: #b4ff39;
+        color: #170f1e;
+        padding: 10px;
+		text-align: center;
+      }
+      aside {
+        float: left;
+        width: 20%;
+        background-color: #ffffff;
+        padding: 10px;
+      }
+      main {
+        float: left;
+        width: 60%;
+        padding: 10px;
+		text-align: center;
+      }
+		input[type="text"] {
+		width: 40%;
+		padding: 12px 20px;
+		margin: 8px 0;
+		box-sizing: border-box;
+		border: 2px solid #ccc;
+		border-radius: 4px;
+		background-color: #f8f8f8;
+		font-size: 16px;
+		text-font:bold;
+		color: #555;
+		}
+		.container {
+		width: 80%;
+		margin: 0 auto;
+		background-color: #f0f0f0;
+		padding: 20px;
+		border-radius: 5px;
+		box-shadow: 0 0 5px rgba(0,0,0,0.2);
+		}
+	  .color-box {
+        width: 100px;
+        height: 100px;
+        margin: 20px auto;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to Color Quest!!!!</h1>
+	  <h4>Identify The Color in Input Box and Win The GAME</h4>
+	  
+      
+    </header>
+	<aside></aside>
+    <main>
+	  
+	  <div class="container">
+			<h1 id="resultbox">___________________________</h1>
+			<p id="score" style="text-align:right">Score :    0</p>
+			<p id="life" style="text-align:right">LifeLine : 3</p>
+			<p id="highScore" style="text-align:right">HighScore :    0</p>
+	  
+		 
+		<h3>Color format is RGB :<input id="Color" type="text" > <button onclick="getColor()">Get Colors</button></h3>
+			
+	  <h3>Chose the correct Color</h3>
+	  <button onclick="result1()"><div  id="color-box1" class="color-box"></div></button>
+	  <button onclick="result2()"><div  id="color-box2" class="color-box"></div></button>
+	  <button onclick="result3()"><div  id="color-box3" class="color-box"></div></button>
+	  <button onclick="result4()"><div  id="color-box4" class="color-box"></div></button>
+	  <h3 id="reset"></h3>
+	  </div>
+	  
+	  
+	  
+	  
+	  <script>
+		function isgameOver()
+		{
+			if(lifeLine<0)
+			{
+				document.getElementById("life").innerHTML="LifeLine : 3";
+				document.getElementById("score").innerHTML="Score :   0";
+				if(Score>highScore)
+				{
+				highScore=Score;
+				document.getElementById("highScore").innerHTML="HighScore : "+highScore;
+				}
+				document.getElementById("reset").innerHTML="Your lifeLine are over, so Your Game has been Restarted";
+				lifeLine=3;
+				color="#";
+				Score=0;
+				getColor();
+				cls();
+				
+			}
+			
+		}
+	  
+	  
+	  
+	  
+		var color;
+		var lifeLine=3;
+		var Score=0;
+		var highScore=0;
+		function getRandomColor() {
+		var letters = "0123456789ABCDEF";
+		var color = "#";
+		for (var i = 0; i < 6; i++) {
+		color += letters[Math.floor(Math.random() * 16)];
+		}
+		return color;
+		}
+		function getColor()
+		{
+		
+			isgameOver();
+			
+			 color =getRandomColor();
+			document.getElementById("Color").value=hexToRgb(color);
+			var boxName = "color-box1";
+			boxName=randomBox();
+			document.getElementById(boxName).style.backgroundColor = color;
+			}
+			
+			function randomBox()
+			{
+			const box=["color-box1","color-box2","color-box3","color-box4"]
+			var rand=Math.floor(Math.random() * 4);
+			for(let i=0;i<4;i++)
+			{
+				if(i!=rand)
+				{
+				document.getElementById(box[i]).style.backgroundColor = getRandomColor();
+				}
+			}
+			return box[rand];
+			}
+			
+			function result1()
+			{
+				clsReset();
+			var col=document.getElementById("color-box1").style.backgroundColor;
+			var check=hexToRgb(color);
+			if(col==check)
+			{
+				document.getElementById("resultbox").innerHTML="Yes!!! YOU CHOOSE RIGHT COLOR";
+				Score=Score+100;
+				document.getElementById("score").innerHTML="Score : "+Score;
+				getColor();
+			}
+			else
+			{
+				document.getElementById("resultbox").innerHTML="ohh NO! YOU CHOOSE WRONG COLOR";
+				lifeLine-=1;
+				document.getElementById("life").innerHTML ="LifeLine : "+lifeLine;
+				isgameOver();
+			}
+			}
+			
+			
+			function result2()
+			{
+				clsReset();
+				
+			var col=document.getElementById("color-box2").style.backgroundColor;
+			var check=hexToRgb(color);
+			if(col==check)
+			{
+				document.getElementById("resultbox").innerHTML="Yes YOU CHOOSE RIGHT COLOR";
+				Score=Score+100;
+				document.getElementById("score").innerHTML="Score : "+Score;
+				getColor();
+			}
+			else
+			{
+				document.getElementById("resultbox").innerHTML="ohh NO! YOU CHOOSE WRONG COLOR";
+				lifeLine-=1;
+				document.getElementById("life").innerHTML="LifeLine : "+lifeLine;
+				isgameOver();
+			}
+			}
+			
+			function result3()
+			{
+				clsReset();
+			var col=document.getElementById("color-box3").style.backgroundColor;
+			var check=hexToRgb(color);
+			if(col==check)
+			{
+				document.getElementById("resultbox").innerHTML="Yes YOU CHOOSE RIGHT COLOR";
+				Score=Score+100;
+				document.getElementById("score").innerHTML="Score : "+Score;
+				getColor();
+			}
+			else
+			{
+				document.getElementById("resultbox").innerHTML="ohh NO! YOU CHOOSE WRONG COLOR";
+				lifeLine-=1;
+				document.getElementById("life").innerHTML="LifeLine : "+lifeLine;
+				isgameOver();
+			}
+			}
+			function result4()
+			{
+				clsReset();
+			var col=document.getElementById("color-box4").style.backgroundColor;
+			var check=hexToRgb(color);
+			if(col==check)
+			{
+				document.getElementById("resultbox").innerHTML="Yes YOU CHOOSE RIGHT COLOR";
+				Score=Score+100;
+				document.getElementById("score").innerHTML="Score : "+Score;
+				getColor();
+			}
+			else
+			{
+				document.getElementById("resultbox").innerHTML="ohh NO! YOU CHOOSE WRONG COLOR";
+				lifeLine-=1;
+				document.getElementById("life").innerHTML="LifeLine : "+lifeLine;
+				isgameOver();
+			}
+			}
+			
+			
+			
+			
+			
+			
+			function cls()
+			{
+			document.getElementById("resultbox").innerHTML="";
+			}
+			function clsReset()
+			{
+				document.getElementById("reset").innerHTML="";
+			}
+			function hexToRgb(hex) {
+				// Remove the "#" character if it exists
+				hex = hex.replace("#", "");
+
+				// If the hex code is shorthand (e.g. "#abc" instead of "#aabbcc"), expand it to the full format
+				if (hex.length === 3) {
+				hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+			}
+
+			// Extract the red, green, and blue values from the hex code and convert them to decimal
+			var r = parseInt(hex.substring(0, 2), 16);
+			var g = parseInt(hex.substring(2, 4), 16);
+			var b = parseInt(hex.substring(4, 6), 16);
+
+			// Return the RGB value as an object with three properties
+			return  "rgb(" +r+", "+g+", "+b+")";
+			}
+			
+	  </script>
+	  
+    </main>
+    
+  </body>
+</html>
